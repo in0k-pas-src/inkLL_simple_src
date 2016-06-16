@@ -92,8 +92,7 @@ interface
 {$ifOpt D+}
 {$define inkLLsimple_fncHeadMessage} //< сообщения о текущей процедуре, с ними проще ловить ошибки
 {$endif}
-uses {$ifOpt D+}sysutils,{$endif}
-    inkLL_node;
+uses inkLL_node{$ifOpt D+},sysutils{$endif};
 
 //****************************************************************************//
 //                                                                            //
@@ -181,14 +180,12 @@ end;
 {$MACRO ON}
 {$deFine _M_protoInkLLs_blockFNK__GetNext:=inkNodeLLs_getNext}
 {$deFine _M_protoInkLLs_blockFNK__SetNext:=inkNodeLLs_setNext}
-{.$deFine _M_protoInkLLs_blockFNK__nodeDST:=''} //< чтобы ПОМНИТЬ
+{.$deFine _M_protoInkLLs_blockFNK__nodeDST:=''} //< чтобы ПОМНИТЬ. тоесть эта строка тут ПРОСТО НЕ НУЖНА.
 
 //------------------------------------------------------------------------------
 
 {:::[00] ИНИЦИАЛИЗИРОВАТЬ, подготовить к работе.
   @param(SLL переменная-ссылко-указатель на первый узел списка)
-  ---
-  * SLL сделана как out для "подавления" hint`ов при начальной инициализации
   :}
 procedure inkLLs_INIT(out SLL:pointer);
 begin
@@ -406,8 +403,6 @@ end;
   :}
 function inkLLs_getLast(const SLL:pointer; out Count:tInkLLNodeCount):pointer;
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_getLast count'}{$endIF}
-var tmp:pointer;
-{$deFine _M_protoInkLLs_05v2__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_05v2__cst_FIRST  :=SLL}
 {$deFine _M_protoInkLLs_05v2__out_COUNT  :=Count}
 {$deFine _M_protoInkLLs_05v2__out_LAST   :=result}
@@ -423,8 +418,6 @@ end;
   :}
 function inkLLs_getLast(const SLL:pointer; out Last:pointer):tInkLLNodeCount;
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_getLast count'}{$endIF}
-var tmp:pointer;
-{$deFine _M_protoInkLLs_05v2__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_05v2__cst_FIRST  :=SLL}
 {$deFine _M_protoInkLLs_05v2__out_COUNT  :=result}
 {$deFine _M_protoInkLLs_05v2__out_LAST   :=Last}
@@ -455,6 +448,8 @@ end;
   :}
 function  inkLLs_cutNodeRES(var SLL:pointer; const Node:pointer):boolean;
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_cutNodeRES'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_C0v2__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_C0v2__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_C0v2__cst_NODE :=Node}
 {$deFine _M_protoInkLLs_C0v2__out_RES  :=result}
@@ -500,6 +495,8 @@ end;
   :}
 procedure inkLLs_insListFirst(var SLL:pointer; const List:pointer);
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_insListFirst'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_07__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_07__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_07__cst_LIST :=List}
 begin //< для удобства навигации
@@ -516,6 +513,8 @@ end;
   :}
 function inkLLs_cutNodeLast(var SLL:pointer):pointer;
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_cutNodeLast'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_CFv1__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_CFv1__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_CFv1__out_LAST :=result}
 begin //< для удобства навигации
@@ -531,6 +530,8 @@ end;
   :}
 function inkLLs_cutNodeLast(var SLL:pointer; out Count:tInkLLNodeCount):pointer;
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkSLL_cutNodeLast count'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_CFv2__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_CFv2__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_CFv2__out_COUNT:=Count}
 {$deFine _M_protoInkLLs_CFv2__out_LAST :=result}
@@ -548,6 +549,8 @@ end;
   :}
 procedure inkLLs_insNodeLast(var SLL:pointer; const Node:pointer);
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_insNodeLast'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_08v1__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_08v1__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_08v1__cst_NODE :=Node}
 begin //< для удобства навигации
@@ -563,6 +566,8 @@ end;
   :}
 procedure inkLLs_insNodeLast(var SLL:pointer; const Node:pointer; out Count:tInkLLNodeCount);
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_insNodeLast count'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_08v2__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_08v2__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_08v2__out_COUNT:=Count}
 {$deFine _M_protoInkLLs_08v2__cst_NODE :=Node}
@@ -580,6 +585,8 @@ end;
   :}
 procedure inkLLs_insListLast(var SLL:pointer; const List:pointer);
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_insListLast'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_09v1__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_09v1__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_09v1__cst_LIST :=List}
 begin //< для удобства навигации
@@ -595,6 +602,10 @@ end;
   :}
 procedure inkLLs_insListLast(var SLL:pointer; const List:pointer; out Count:tInkLLNodeCount);
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_insNodeLast'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_09v2__tmp_POINTER:=tmp}
+var tmc:tInkLLNodeCount;
+{$deFine _m_protoInkLLs_09v2__tmp_COUNT:=tmc}
 {$deFine _M_protoInkLLs_09v2__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_09v2__cst_LIST :=List}
 {$deFine _M_protoInkLLs_09v2__out_COUNT:=Count}
@@ -630,6 +641,7 @@ function inkLLs_getNodeOrLast(const SLL:pointer; Index:tInkLLNodeIndex):pointer;
 {$deFine _M_protoInkLLs_A1v2__out_NODE :=result}
 begin //< для удобства навигации
 {$I protoInkLLs_bodyFNC_A1v2__getNodeOrLast.inc}
+end;
 
 //------------------------------------------------------------------------------
 
@@ -640,10 +652,12 @@ begin //< для удобства навигации
  :::}
 function inkLLs_getIndex(const SLL:pointer; const Node:pointer; out Index:tInkLLNodeIndex):boolean;
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_getIndex'}{$endIF}
-{$deFine _M_protoInkLLs_A2__cst_FIRST :=SLL}
-{$deFine _M_protoInkLLs_A2__cst_NODE  :=Node}
-{$deFine _M_protoInkLLs_A2__out_INDEX :=index}
-{$deFine _M_protoInkLLs_A2__out_RESULT:=result}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_A2__tmp_POINTER:=tmp}
+{$deFine _M_protoInkLLs_A2__cst_FIRST  :=SLL}
+{$deFine _M_protoInkLLs_A2__cst_NODE   :=Node}
+{$deFine _M_protoInkLLs_A2__out_INDEX  :=index}
+{$deFine _M_protoInkLLs_A2__out_RESULT :=result}
 begin //< для удобства навигации
 {$I protoInkLLs_bodyFNC_A2__getIndex.inc}
 end;
@@ -657,6 +671,8 @@ end;
  :::}
 procedure inkLLs_insNodeIndex(var SLL:pointer; const Node:pointer; Index:tInkLLNodeIndex);
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_insNodeIndex'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_A3__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_A3__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_A3__cst_NODE :=Node}
 {$deFine _M_protoInkLLs_A3__var_INDEX:=index}
@@ -675,6 +691,8 @@ end;
  :::}
 function inkLLs_cutNodeIndex(var SLL:pointer; Index:tInkLLNodeIndex):pointer;
 {$ifDef inkLLsimple_fncHeadMessage}{$message 'inkLLs_insNodeIndex'}{$endIF}
+var tmp:pointer;
+{$deFine _M_protoInkLLs_A5v1__tmp_POINTER:=tmp}
 {$deFine _M_protoInkLLs_A5v1__var_FIRST:=SLL}
 {$deFine _M_protoInkLLs_A5v1__var_INDEX:=index}
 {$deFine _M_protoInkLLs_A5v1__out_NODE :=result}
